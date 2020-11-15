@@ -1,3 +1,12 @@
-from django.shortcuts import render
+from rest_framework import mixins, viewsets
 
-# Create your views here.
+from dentist.models import Dentist
+from dentist.serializers import DentistSerializer
+
+
+class DentistViewSet(mixins.ListModelMixin,
+                     mixins.RetrieveModelMixin,
+                     viewsets.GenericViewSet):
+    queryset = Dentist.objects.all()
+    serializer_class = DentistSerializer
+    http_method_names = ['get']
