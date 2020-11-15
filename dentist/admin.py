@@ -1,3 +1,7 @@
 from django.contrib import admin
+from django.contrib.admin.models import LogEntry
 
-# Register your models here.
+from dentist.models import Dentist
+
+admin.site.register(Dentist)
+admin.site.register(LogEntry)
