@@ -1,0 +1,71 @@
+openapi: 3.0.2
+info:
+  title: ''
+  version: ''
+paths:
+  /v1/dentist/:
+    get:
+      operationId: listDentists
+      description: ''
+      parameters:
+      - name: name
+        required: false
+        in: query
+        description: name
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dentist'
+          description: ''
+      tags:
+      - v1
+  /v1/dentist/{id}/:
+    get:
+      operationId: retrieveDentist
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this dentist.
+        schema:
+          type: string
+      - name: name
+        required: false
+        in: query
+        description: name
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dentist'
+          description: ''
+      tags:
+      - v1
+components:
+  schemas:
+    Dentist:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+        location:
+          type: string
+        specialization:
+          type: string
+      required:
+      - name
+      - location
+      - specialization

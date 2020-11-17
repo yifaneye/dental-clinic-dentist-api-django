@@ -1,0 +1,69 @@
+swagger: '2.0'
+info:
+  title: ''
+  version: ''
+paths:
+  /v1/dentist/:
+    get:
+      produces:
+        - application/json
+      parameters:
+        - description: name
+          in: query
+          name: name
+          required: false
+          type: string
+      responses:
+        '200':
+          description: ''
+          schema:
+            items:
+              $ref: '#/definitions/Dentist'
+            type: array
+      tags:
+        - v1
+      description: ''
+      operationId: listDentists
+  '/v1/dentist/{id}/':
+    get:
+      produces:
+        - application/json
+      parameters:
+        - description: A unique integer value identifying this dentist.
+          in: path
+          name: id
+          required: true
+          type: string
+        - description: name
+          in: query
+          name: name
+          required: false
+          type: string
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Dentist'
+      tags:
+        - v1
+      description: ''
+      operationId: retrieveDentist
+definitions:
+  Dentist:
+    properties:
+      id:
+        readOnly: true
+        type: integer
+      location:
+        type: string
+      name:
+        type: string
+      specialization:
+        type: string
+    required:
+      - name
+      - location
+      - specialization
+    type: object
+x-components: {}
+
